@@ -51,6 +51,28 @@
     height: 2rem;
     background-color: #06d6a0;
     font-size: 0.7rem;
+    border: 0;
+}
+
+.button:hover {
+    background-color: #36d4aa;
+}
+
+.download-link {
+    background-color: #06d6a0;
+    display: inline-block;
+    width: 8rem;
+    height: 2rem;
+    border-radius: 0.5rem;
+    text-align: center;
+    font-size: 0.7rem;
+    margin-left: 0.7rem;
+    background-color: #b8c7c3;
+    color: rgb(16, 17, 17);
+}
+
+.download-link p {
+    padding: 0.55rem 0;
 }
 
 .button:disabled {
@@ -128,4 +150,13 @@
     display: inline-block;
     width: 200px;
     margin-left: 7rem;
+}
+
+.upload-btn-group {
+    display: none;
+    width: 100%;
+}
+
+.download-btn-group {
+    width: 100%;
 }

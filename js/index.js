@@ -1,59 +1,70 @@
-const $spaceId = "to4YxBrqDSsT4QAJ\\test";
-const $mapId = "empty-room-small-brick";
-const $apiKey = "l8giie6My4hAjvWU";
 const getUrl = "https://gather.town/api/getMap";
 const setUrl = "https://gather.town/api/setMap";
 const tabExport = document.getElementById("tab-export");
 const tabImport = document.getElementById("tab-import");
+
 const exportForm = document.getElementById("export-form");
 const importForm = document.getElementById("import-form");
+
 const uploadMap = document.getElementById("upload-map");
 const importMap = document.getElementById("import-map");
 const downloadMap = document.getElementById("download-map");
+
+const importApiValue = document.getElementById("import-api-value");
+const importSpaceValue = document.getElementById("import-space-value");
+const importMapValue = document.getElementById("import-map-value");
+
+const exportApiValue = document.getElementById("export-api-value");
+const exportSpaceValue = document.getElementById("export-space-value");
+const exportMapValue = document.getElementById("export-map-value");
+const downloadLink = document.getElementById("download-link");
+
+const downloadBtnGroup = document.getElementById("download-btn-group");
+const uploadBtnGroup = document.getElementById("upload-btn-group");
+console.log(exportForm);
+console.log(downloadBtnGroup);
+
 const tabWrap = document.getElementById("tab-wrap");
 const bizeFile = document.getElementById("bizFile");
-// async function getMap($spaceId, $mapId, $apiKey) {
-//     const res = await axios.get(getUrl, {
-//         params: {
-//             apiKey: $apiKey,
-//             spaceId: $spaceId,
-//             mapId: $mapId,
-//         },
-//     });
 
-//     res.data.objects.push({
-//         color: "#df7126",
-//         height: 2,
-//         highlighted:
-//             "https://cdn.gather.town/v0/b/gather-town.appspot.com/o/internal-dashboard-upload%2FVp8LcjyHBWZEmOp9?alt=media&token=e35a9733-d580-4437-bf67-b63959f88974",
-//         id: "FirePitLit - PBa6mQESMxUmPjdc_5P7_947cf3b9-38b5-4039-b700-6d891cd8e234",
-//         normal: "https://cdn.gather.town/v0/b/gather-town.appspot.com/o/internal-dashboard-upload%2FVIWc0l1ky8ZzQ5gm?alt=media&token=dbc039ba-19f7-4014-bc91-e13038401728",
-//         objectPlacerId: "mXaETfP5wkMKYWBNQzlKOKVI8KE2",
-//         offsetX: 15.333333015441895,
-//         offsetY: 21,
-//         orientation: 0,
-//         properties: {},
-//         sound: {
-//             maxDistance: 5,
-//             loop: true,
-//             volume: 0.5,
-//             src: "https://cdn.gather.town/v0/b/gather-town.appspot.c…=media&token=8417d173-cbfd-484a-b109-f98b37c251d9",
-//         },
-//         templateId: "FirePitLit - PBa6mQESMxU_mPjdc_5P7",
-//         type: 0,
-//         width: 2,
-//         x: 12,
-//         y: 2,
-//         _name: "Fire Pit (Lit)",
-//     });
-//     return res.data;
-// }
-
+//맵 데이터 얻어오기
+async function getMap($exportMapValue, $exportApiValue, $exportSpaceValue) {
+    try {
+        const res = await axios.get(getUrl, {
+            params: {
+                apiKey: $exportApiValue,
+                spaceId: $exportSpaceValue,
+                mapId: $exportMapValue,
+            },
+        });
+        swal({
+            title: "맵파일 가져오기 성공",
+            text: "다운로드를 클릭해주세요",
+            icon: "success",
+        }).then(() => {
+            downloadLink.style.backgroundColor = "#06d6a0";
+        });
+        return res;
+    } catch (err) {
+        console.log(err);
+        swal({
+            title: "맵파일 가져오기 실패",
+            text: "값을 정확하게 입력해주세요.",
+            icon: "warning",
+        }).then((val) => {
+            location.href = "./index.html";
+        });
+    }
+}
+// 맵 업로드하기
 async function setMap(test) {
+    const $exportMapValue = exportMapValue.value;
+    const $exportApiValue = exportApiValue.value;
+    const $exportSpaceValue = exportSpaceValue.value.replace("/", "\\");
     const data = {
-        apiKey: $apiKey,
-        spaceId: $spaceId,
-        mapId: $mapId,
+        apiKey: $exportApiValue,
+        spaceId: $exportSpaceValue,
+        mapId: $exportMapValue,
         mapContent: test,
     };
     console.log(data);
@@ -79,36 +90,33 @@ async function setMap(test) {
     }
 }
 
-// async function getMapTest($spaceId, $mapId, $apiKey) {
-//     const res = await axios.get(getUrl, {
-//         params: {
-//             apiKey: $apiKey,
-//             spaceId: $spaceId,
-//             mapId: $mapId,
-//         },
-//     });
+// 맵데이터 추출후, 다운로드링크 걸기
+function exportMapFile($exportMapValue, $exportApiValue, $exportSpaceValue) {
+    getMap($exportMapValue, $exportApiValue, $exportSpaceValue).then((res) => {
+        let file;
+        let data = res;
 
-//     return res;
-// }
+        let sFileName = "file_test.json";
+        let properties = { type: "text/json" }; // Specify the file's mime-type.
+        try {
+            file = new File([JSON.stringify(res)], sFileName, properties);
+        } catch (e) {
+            file = new Blob(data, properties);
+        }
+        let url = URL.createObjectURL(file);
+        downloadLink.href = url;
+        downloadMap.addEventListener("click", CreateDownloadLink);
+    });
+}
 
-// getMapTest($spaceId, $mapId, $apiKey).then((res) => {
-//     var file;
-//     var data = res;
-
-//     var sFileName = "file_test.json";
-
-//     var properties = { type: "text/json" }; // Specify the file's mime-type.
-//     try {
-//         // Specify the filename using the File constructor, but ...
-//         // file = new File(data, sFileName, properties);
-//         file = new File([JSON.stringify(res)], sFileName, properties);
-//     } catch (e) {
-//         // ... fall back to the Blob constructor if that isn't supported.
-//         file = new Blob(data, properties);
-//     }
-//     var url = URL.createObjectURL(file);
-//     document.getElementById("link").href = url;
-// });
+// 파일다운로드 링크생성
+function CreateDownloadLink(e) {
+    e.preventDefault();
+    const $exportMapValue = exportMapValue.value;
+    const $exportApiValue = exportApiValue.value;
+    const $exportSpaceValue = exportSpaceValue.value.replace("/", "\\");
+    exportMapFile($exportMapValue, $exportApiValue, $exportSpaceValue);
+}
 
 function test(event) {
     event.preventDefault(); //submit 할때 새로고침 되는것을 방지
@@ -142,19 +150,16 @@ function parseText(text) {
     });
 }
 
-function submitMap() {
-    importMap;
-}
-
 function tabToggle() {
     if (tabExport.checked) {
-        exportForm.style.display = "block";
-        importForm.style.display = "none";
+        downloadBtnGroup.style.display = "block";
+        uploadBtnGroup.style.display = "none";
     } else {
-        exportForm.style.display = "none";
-        importForm.style.display = "block";
+        downloadBtnGroup.style.display = "none";
+        uploadBtnGroup.style.display = "block";
     }
 }
 
 tabWrap.addEventListener("click", tabToggle);
 bizeFile.addEventListener("change", test);
+downloadMap.addEventListener("click", CreateDownloadLink);
