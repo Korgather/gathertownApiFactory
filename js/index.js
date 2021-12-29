@@ -21,8 +21,6 @@ const downloadLink = document.getElementById("download-link");
 
 const downloadBtnGroup = document.getElementById("download-btn-group");
 const uploadBtnGroup = document.getElementById("upload-btn-group");
-console.log(exportForm);
-console.log(downloadBtnGroup);
 
 const tabWrap = document.getElementById("tab-wrap");
 const bizeFile = document.getElementById("bizFile");
@@ -67,7 +65,7 @@ async function getMap($exportMapValue, $exportApiValue, $exportSpaceValue) {
     }
 }
 // 맵 업로드하기
-async function setMap(test) {
+async function setMap(setData) {
     const $exportMapValue = exportMapValue.value;
     const $exportApiValue = exportApiValue.value;
     const $exportSpaceValue = exportSpaceValue.value.replace("/", "\\");
@@ -75,9 +73,8 @@ async function setMap(test) {
         apiKey: $exportApiValue,
         spaceId: $exportSpaceValue,
         mapId: $exportMapValue,
-        mapContent: test,
+        mapContent: setData,
     };
-    console.log(data);
 
     try {
         await axios.post(setUrl, JSON.stringify(data), {
@@ -147,7 +144,6 @@ function test(event) {
 function parseText(text) {
     importMap.addEventListener("click", () => {
         try {
-            console.log(JSON.parse(text).data);
             setMap(JSON.parse(text).data);
         } catch (err) {
             swal({
