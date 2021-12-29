@@ -40,7 +40,8 @@
 .input {
     display: block;
     margin: 0.7rem 0;
-    padding: 0.4rem 10rem;
+    padding: 0.4rem 1rem;
+    width: 580px;
     border-radius: 0.5rem;
 }
 
@@ -54,9 +55,9 @@
     border: 0;
 }
 
-.button:hover {
-    background-color: #36d4aa;
-}
+/* .button:hover {
+    background-color: #69ebc8;
+} */
 
 .download-link {
     background-color: #06d6a0;
@@ -159,4 +160,12 @@
 
 .download-btn-group {
     width: 100%;
+}
+
+.api-config {
+    margin-left: 0.3rem;
+}
+
+::-webkit-file-upload-button {
+    cursor: pointer;
 }

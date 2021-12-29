@@ -43,6 +43,16 @@ async function getMap($exportMapValue, $exportApiValue, $exportSpaceValue) {
             icon: "success",
         }).then(() => {
             downloadLink.style.backgroundColor = "#06d6a0";
+
+            // hover 이벤트 추가
+            // $("#download-link").hover(
+            //     function () {
+            //         $(this).css("background-color", "#69ebc8");
+            //     },
+            //     function () {
+            //         $(this).css("background-color", "#06d6a0");
+            //     }
+            // );
         });
         return res;
     } catch (err) {
@@ -159,6 +169,8 @@ function tabToggle() {
         uploadBtnGroup.style.display = "block";
     }
 }
+
+// $("#download-link").unbind("mouseenter mouseleave");
 
 tabWrap.addEventListener("click", tabToggle);
 bizeFile.addEventListener("change", test);
