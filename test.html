@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+        <link rel="stylesheet" href="./asset/css/default.css" />
+        <link rel="stylesheet" href="./asset/css/index.css" />
+        <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    </head>
+    <body>
+        <header id="header">
+            <h1>
+                <a href="test.html"><img src="./asset/img/logo.png" /></a>
+            </h1>
+            <nav class="default-menu">
+                <ul>
+                    <li><a href="test.html">🌏 맵 저장하기</a></li>
+                </ul>
+            </nav>
+        </header>
+        <section class = "section-config">
+            <article class = "config-wrap">
+                <div class = "header-logo">코게더 | KORGATHER</div>
+                <div class="tab-wrap" id="tab-wrap">
+                    <input class = "export" id="tab-export" type="radio" name="tab" checked />
+                    <label for="tab-export" class="tab">맵파일 추출
+                        <div class = "border"></div>
+                    </label>
+                    <div class = "tab-middle-line">|</div>
+                    <input class = "import" id="tab-import" type="radio" name="tab" />
+                    <label for="tab-import" class="tab">맵파일 적용
+                        <div for = "tab-2" class = "border"></div>
+                    </label>
+                    
+                </div>
+                <form class = "export-form" id = "export-form">
+                    <div class = "group">
+                        <label for="api" class="api-config">API 키</label>
+                        <input id="api" type="text" class="input" />
+                    </div>
+                    <div class = "group">
+                        <label for="api" class="api-config">맵ID</label>
+                        <input id="api" type="text" class="input" />
+                    </div>
+                    <div class = "group">
+                        <label for="api" class="api-config">룸 이름</label>
+                        <input id="api" type="text" class="input" />
+                    </div>
+                    <div class = "group">
+                        <input type="button" class="button" value="맵파일 추출" id="download-map"/>
+                    </div>
+                </form>
+
+                <form class = "import-form" id = "import-form">
+                    <div class = "group">
+                        <label for="api" class="api-config">API 키</label>
+                        <input id="api" type="text" class="input" />
+                    </div>
+                    <div class = "group">
+                        <label for="api" class="api-config">맵ID</label>
+                        <input id="api" type="text" class="input" />
+                    </div>
+                    <div class = "group">
+                        <label for="api" class="api-config">룸 이름</label>
+                        <input id="api" type="text" class="input" />
+                    </div>
+                    <div class = "group">
+                        <input type="button"  class="button" value="맵파일 업로드" id="upload-map"/>
+                        <input type="file" name="file"  id="bizFile" />
+                        <span id="fileName">선택된 파일없음</span>
+                    </div>
+                    <div class = "group">
+                        <input type="button" class="button" value="맵파일 적용하기" id="import-map" disabled='false'/>
+                    </div>
+                    
+                </form>
+
+            </article>
+        </section>
+
+
+        <script
+            src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+            integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+            crossorigin="anonymous"
+        ></script>
+        
+        <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+        <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+        <script type="module" src="./js/index.js"></script>
+
+        <body>
+</html>

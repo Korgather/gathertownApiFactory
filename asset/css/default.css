@@ -1,0 +1,118 @@
+html {
+    font-size: 20px;
+    overflow-y: hidden;
+}
+body {
+    font-size: 1rem;
+    background-color: #282d4e;
+}
+
+body,
+div,
+ul,
+li,
+dl,
+ol,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+input,
+fieldset,
+legend,
+p,
+select,
+table,
+th,
+td,
+tr,
+textarea,
+button,
+form,
+figure,
+figcaption {
+    margin: 0;
+    padding: 0;
+}
+
+/* 링크 초기화 */
+a {
+    color: #000;
+    text-decoration: none;
+}
+
+/* 폰트 초기화*/
+body,
+input,
+textarea,
+select,
+button,
+table {
+    font: 600 16px/18px "Gothic A1", sans-serif;
+}
+
+/* 폰트 스타일 초기화 */
+em,
+address {
+    font-style: normal;
+}
+
+/* 블릿기호 초기화 */
+ul,
+li,
+ol {
+    list-style: none;
+}
+
+/*---------------default------------  */
+
+#header {
+    display: flex;
+    padding: 0.7rem 1.2rem;
+    justify-content: start;
+    background-color: #333a64;
+}
+
+#header h1 {
+    height: 100%;
+    width: 5rem;
+    line-height: 100%;
+}
+
+#header h1 a {
+    display: inline-block;
+    padding: 0.3rem 0.6rem;
+    width: 5rem;
+    height: 2.3rem;
+}
+
+#header h1 a img {
+    width: 2.3rem;
+    border-radius: 0.6rem;
+    background-color: #4358d8;
+}
+
+#header .default-menu ul {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center; /*밑으로 붙이길 원한다면 flex-end*/
+}
+
+#header .default-menu ul li a {
+    display: block;
+    width: 7rem;
+    height: 1.8rem;
+    font-weight: bold;
+    text-align: center;
+    line-height: 1.8rem;
+    font-size: 0.9rem;
+    color: #fff;
+    transition: color 0.3s;
+}
+
+#header .default-menu ul li a:hover {
+    color: #2db0e6;
+}
