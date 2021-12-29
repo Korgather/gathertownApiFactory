@@ -60,7 +60,7 @@ async function getMap($exportMapValue, $exportApiValue, $exportSpaceValue) {
             text: "값을 정확하게 입력해주세요.",
             icon: "warning",
         }).then((val) => {
-            location.href = "./index.html";
+            location.href = "/";
         });
     }
 }
