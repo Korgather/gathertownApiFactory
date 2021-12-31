@@ -116,3 +116,14 @@ ol {
 #header .default-menu ul li a:hover {
     color: #06d6a0;
 }
+
+.today {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+}
+
+.today div,
+.today div {
+    display: inline;
+}
