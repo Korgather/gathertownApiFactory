@@ -1,5 +1,7 @@
-const getUrl = "https://gather.town/api/getMap";
-const setUrl = "https://gather.town/api/setMap";
+// const getUrl = "https://cors.bridged.cc/https://gather.town/api/getMap";
+// const setUrl = "https://cors.bridged.cc/https://gather.town/api/setMap";
+const getUrl = "https://cors-anywhere.herokuapp.com/https://gather.town/api/getMap";
+const setUrl = "https://cors-anywhere.herokuapp.com/https://gather.town/api/setMap";
 const tabExport = document.getElementById("tab-export");
 const tabImport = document.getElementById("tab-import");
 
@@ -29,6 +31,10 @@ const bizeFile = document.getElementById("bizFile");
 async function getMap($exportMapValue, $exportApiValue, $exportSpaceValue) {
     try {
         const res = await axios.get(getUrl, {
+            // withCredentials: true,
+            // headers: {
+            //     "Access-Control-Allow-Origin": "*",
+            // },
             params: {
                 apiKey: $exportApiValue,
                 spaceId: $exportSpaceValue,
@@ -78,6 +84,7 @@ async function setMap(setData) {
 
     try {
         await axios.post(setUrl, JSON.stringify(data), {
+            // withCredentials: true,
             headers: {
                 "Content-Type": `application/json`,
             },
@@ -165,9 +172,9 @@ function tabToggle() {
         uploadBtnGroup.style.display = "block";
     }
 }
-
-// $("#download-link").unbind("mouseenter mouseleave");
-
+// axios.defaults.headers.common["Content-Type"] = "application/x-www-form-urlencoded";
+// axios.defaults.headers.common["Access-Control-Allow-Origin"] = "*";
+// axios.defaults.withCredentials = true;
 tabWrap.addEventListener("click", tabToggle);
 bizeFile.addEventListener("change", test);
 downloadMap.addEventListener("click", CreateDownloadLink);
