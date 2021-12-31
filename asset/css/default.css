@@ -127,3 +127,13 @@ ol {
 .today div {
     display: inline;
 }
+
+.block {
+    width: 200px;
+    height: 100px;
+    position: absolute;
+    display: inline-block;
+    right: 0;
+    bottom: 0;
+    z-index: 999;
+}
