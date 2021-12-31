@@ -1,7 +1,9 @@
 // const getUrl = "https://cors.bridged.cc/https://gather.town/api/getMap";
 // const setUrl = "https://cors.bridged.cc/https://gather.town/api/setMap";
-const getUrl = "https://cors-anywhere.herokuapp.com/https://gather.town/api/getMap";
-const setUrl = "https://cors-anywhere.herokuapp.com/https://gather.town/api/setMap";
+// const getUrl = "https://cors-anywhere.herokuapp.com/https://gather.town/api/getMap";
+// const setUrl = "https://cors-anywhere.herokuapp.com/https://gather.town/api/setMap";
+const getUrl = "https://korgathershop.herokuapp.com/https://gather.town/api/getMap";
+const setUrl = "https://korgathershop.herokuapp.com/https://gather.town/api/setMap";
 const tabExport = document.getElementById("tab-export");
 const tabImport = document.getElementById("tab-import");
 
