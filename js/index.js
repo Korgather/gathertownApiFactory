@@ -27,148 +27,150 @@ const bizeFile = document.getElementById("bizFile");
 
 //맵 데이터 얻어오기
 async function getMap($exportMapValue, $exportApiValue, $exportSpaceValue) {
-    try {
-        const res = await axios.get(getUrl, {
-            // withCredentials: true,
-            // headers: {
-            //     "Access-Control-Allow-Origin": "*",
-            // },
-            params: {
-                apiKey: $exportApiValue,
-                spaceId: $exportSpaceValue,
-                mapId: $exportMapValue,
-            },
-        });
-        swal({
-            title: "맵파일 가져오기 성공",
-            text: "다운로드를 클릭해주세요",
-            icon: "success",
-        }).then(() => {
-            downloadLink.style.backgroundColor = "#06d6a0";
-
-            // hover 이벤트 추가
-            // $("#download-link").hover(
-            //     function () {
-            //         $(this).css("background-color", "#69ebc8");
-            //     },
-            //     function () {
-            //         $(this).css("background-color", "#06d6a0");
-            //     }
-            // );
-        });
-        return res;
-    } catch (err) {
-        console.log(err);
-        swal({
-            title: "맵파일 가져오기 실패",
-            text: "값을 정확하게 입력해주세요.",
-            icon: "warning",
-        }).then((val) => {
-            location.href = "/";
-        });
-    }
-}
-// 맵 업로드하기
-async function setMap(setData) {
-    const $exportMapValue = exportMapValue.value;
-    const $exportApiValue = exportApiValue.value;
-    const $exportSpaceValue = exportSpaceValue.value.replace("/", "\\");
-    const data = {
+  try {
+    const res = await axios.get(getUrl, {
+      // withCredentials: true,
+      // headers: {
+      //     "Access-Control-Allow-Origin": "*",
+      // },
+      params: {
         apiKey: $exportApiValue,
         spaceId: $exportSpaceValue,
         mapId: $exportMapValue,
-        mapContent: setData,
-    };
+      },
+    });
+    swal({
+      title: "맵파일 가져오기 성공",
+      text: "다운로드를 클릭해주세요",
+      icon: "success",
+    }).then(() => {
+      downloadLink.style.backgroundColor = "#06d6a0";
 
-    try {
-        await axios.post(setUrl, JSON.stringify(data), {
-            // withCredentials: true,
-            headers: {
-                "Content-Type": `application/json`,
-            },
-        });
-        swal({
-            title: "맵업로드 성공",
-            text: "success",
-            icon: "success",
-        });
-    } catch (err) {
-        swal({
-            title: "맵업로드 실패",
-            text: "fail",
-            icon: "warning",
-        });
-        console.log(err);
-    }
+      // hover 이벤트 추가
+      // $("#download-link").hover(
+      //     function () {
+      //         $(this).css("background-color", "#69ebc8");
+      //     },
+      //     function () {
+      //         $(this).css("background-color", "#06d6a0");
+      //     }
+      // );
+    });
+    return res;
+  } catch (err) {
+    console.log(err);
+    swal({
+      title: "맵파일 가져오기 실패",
+      text: "값을 정확하게 입력해주세요.",
+      icon: "warning",
+    }).then((val) => {
+      location.href = "/";
+    });
+  }
+}
+// 맵 업로드하기
+async function setMap(setData) {
+  const $exportMapValue = exportMapValue.value;
+  const $exportApiValue = exportApiValue.value;
+  const $exportSpaceValue = exportSpaceValue.value.replace("/", "\\").replaceAll("%20", " ");
+
+  const data = {
+    apiKey: $exportApiValue,
+    spaceId: $exportSpaceValue,
+    mapId: $exportMapValue,
+    mapContent: setData,
+  };
+
+  try {
+    await axios.post(setUrl, JSON.stringify(data), {
+      // withCredentials: true,
+      headers: {
+        "Content-Type": `application/json`,
+      },
+    });
+    swal({
+      title: "맵업로드 성공",
+      text: "success",
+      icon: "success",
+    });
+  } catch (err) {
+    swal({
+      title: "맵업로드 실패",
+      text: "fail",
+      icon: "warning",
+    });
+    console.log(err);
+  }
 }
 
 // 맵데이터 추출후, 다운로드링크 걸기
 function exportMapFile($exportMapValue, $exportApiValue, $exportSpaceValue) {
-    getMap($exportMapValue, $exportApiValue, $exportSpaceValue).then((res) => {
-        let file;
-        let data = res;
+  getMap($exportMapValue, $exportApiValue, $exportSpaceValue).then((res) => {
+    let file;
+    let data = res;
 
-        let sFileName = "file_test.json";
-        let properties = { type: "text/json" }; // Specify the file's mime-type.
-        try {
-            file = new File([JSON.stringify(res)], sFileName, properties);
-        } catch (e) {
-            file = new Blob(data, properties);
-        }
-        let url = URL.createObjectURL(file);
-        downloadLink.href = url;
-        downloadMap.addEventListener("click", CreateDownloadLink);
-    });
+    let sFileName = "file_test.json";
+    let properties = { type: "text/json" }; // Specify the file's mime-type.
+    try {
+      file = new File([JSON.stringify(res)], sFileName, properties);
+    } catch (e) {
+      file = new Blob(data, properties);
+    }
+    let url = URL.createObjectURL(file);
+    downloadLink.href = url;
+    downloadMap.addEventListener("click", CreateDownloadLink);
+  });
 }
 
 // 파일다운로드 링크생성
 function CreateDownloadLink(e) {
-    e.preventDefault();
-    const $exportMapValue = exportMapValue.value;
-    const $exportApiValue = exportApiValue.value;
-    const $exportSpaceValue = exportSpaceValue.value.replace("/", "\\");
-    exportMapFile($exportMapValue, $exportApiValue, $exportSpaceValue);
+  e.preventDefault();
+  const $exportMapValue = exportMapValue.value;
+  const $exportApiValue = exportApiValue.value;
+  const $exportSpaceValue = exportSpaceValue.value.replace("/", "\\").replaceAll("%20", " ");
+
+  exportMapFile($exportMapValue, $exportApiValue, $exportSpaceValue);
 }
 
 function test(event) {
-    event.preventDefault(); //submit 할때 새로고침 되는것을 방지
-    let fileObject = document.getElementById("bizFile");
-    let fileName = fileObject.files[0];
-    let spanFilename = document.getElementById("fileName");
-    spanFilename.innerText = fileName.name;
-    let fr = new FileReader();
-    fr.readAsText(fileName, "utf-8");
+  event.preventDefault(); //submit 할때 새로고침 되는것을 방지
+  let fileObject = document.getElementById("bizFile");
+  let fileName = fileObject.files[0];
+  let spanFilename = document.getElementById("fileName");
+  spanFilename.innerText = fileName.name;
+  let fr = new FileReader();
+  fr.readAsText(fileName, "utf-8");
 
-    fr.onload = () => {
-        parseText(fr.result);
-    };
-    importMap.disabled = false;
-    importMap.style.backgroundColor = "#06d6a0";
+  fr.onload = () => {
+    parseText(fr.result);
+  };
+  importMap.disabled = false;
+  importMap.style.backgroundColor = "#06d6a0";
 }
 
 function parseText(text) {
-    importMap.addEventListener("click", () => {
-        try {
-            setMap(JSON.parse(text).data);
-        } catch (err) {
-            swal({
-                title: "맵업로드 실패",
-                text: "형식이 올바르지 않습니다.",
-                icon: "warning",
-            });
-            console.log(err);
-        }
-    });
+  importMap.addEventListener("click", () => {
+    try {
+      setMap(JSON.parse(text).data);
+    } catch (err) {
+      swal({
+        title: "맵업로드 실패",
+        text: "형식이 올바르지 않습니다.",
+        icon: "warning",
+      });
+      console.log(err);
+    }
+  });
 }
 
 function tabToggle() {
-    if (tabExport.checked) {
-        downloadBtnGroup.style.display = "block";
-        uploadBtnGroup.style.display = "none";
-    } else {
-        downloadBtnGroup.style.display = "none";
-        uploadBtnGroup.style.display = "block";
-    }
+  if (tabExport.checked) {
+    downloadBtnGroup.style.display = "block";
+    uploadBtnGroup.style.display = "none";
+  } else {
+    downloadBtnGroup.style.display = "none";
+    uploadBtnGroup.style.display = "block";
+  }
 }
 // axios.defaults.headers.common["Content-Type"] = "application/x-www-form-urlencoded";
 // axios.defaults.headers.common["Access-Control-Allow-Origin"] = "*";
