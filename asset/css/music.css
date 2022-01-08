@@ -1,0 +1,212 @@
+.section-config {
+  height: calc(100vh - 76px - 53px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 5rem 0;
+}
+
+.section-config .config-wrap {
+  width: 100%;
+  height: 100%;
+  margin: auto;
+  max-width: 728px;
+  height: 740px;
+  position: relative;
+  color: white;
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  flex-direction: column;
+  box-sizing: border-box;
+}
+.section-config .config-wrap .header-logo {
+  margin-bottom: 2rem;
+  font-size: 1.3rem;
+  width: 100%;
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  flex-direction: row;
+}
+
+.input-wrap {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin: 0px 15px 0px 0px;
+  box-sizing: border-box;
+}
+
+.locate-wrap {
+  display: flex;
+}
+
+.locate-wrap input {
+  width: 120px;
+}
+
+.locate-wrap .group-y {
+  margin-left: 15px;
+}
+
+.input-form-wrap {
+  display: flex;
+}
+
+.section-config {
+  display: block;
+}
+
+.group {
+  display: block;
+}
+
+.input {
+  display: block;
+  margin: 0.7rem 0;
+  padding: 0.4rem 1rem;
+  width: 300px;
+  border-radius: 0.5rem;
+}
+
+/* .button:hover {
+    background-color: #69ebc8;
+} */
+
+.download-link {
+  background-color: #06d6a0;
+  display: inline-block;
+  width: 8rem;
+  height: 2rem;
+  border-radius: 0.5rem;
+  text-align: center;
+  font-size: 0.7rem;
+  margin-left: 0.7rem;
+  background-color: #b8c7c3;
+  color: rgb(16, 17, 17);
+}
+
+.download-link p {
+  padding: 0.55rem 0;
+}
+
+.button:disabled {
+  border-radius: 0.5rem;
+  width: 8rem;
+  margin: 0.7rem auto 0.2rem;
+  height: 2rem;
+  background-color: #b8c7c3;
+  font-size: 0.7rem;
+  color: rgb(16, 17, 17);
+  cursor: default;
+}
+
+.tab-wrap {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  flex-direction: row;
+  width: 100%;
+  margin-bottom: 1rem;
+  margin-left: -1rem;
+}
+
+.tab-middle-line {
+  color: #888;
+  font-size: 1rem;
+  font-weight: 600;
+  padding: 0 0.1rem 0.7rem 0;
+}
+
+.tab {
+  font-size: 21px;
+  border-bottom: 2px solid transparent;
+  margin-right: 15px;
+  margin: 0 15px 10px 0;
+  color: #888;
+}
+
+.export,
+.import {
+  opacity: 0;
+}
+
+.export:checked + .tab,
+.import:checked + .tab {
+  color: white;
+}
+
+.import-form {
+  display: none;
+}
+
+.button,
+.tab {
+  cursor: pointer;
+}
+
+#upload-map {
+  position: relative;
+  z-index: 1;
+}
+
+#bizFile {
+  position: relative;
+  z-index: 2;
+  margin-left: -8rem;
+  width: 150px;
+  opacity: 0;
+  cursor: pointer;
+}
+
+#fileName {
+  position: relative;
+  z-index: 3;
+  display: inline-block;
+  width: 200px;
+  margin-left: 7rem;
+}
+
+.upload-btn-group {
+  display: none;
+  width: 100%;
+}
+
+.download-btn-group {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.button {
+  border-radius: 0.5rem;
+  width: 6rem;
+  margin: 0.7rem auto 0.2rem;
+  height: 2rem;
+  background-color: #06d6a0;
+  font-size: 0.7rem;
+  border: 0;
+}
+
+.button:not(:first-of-type) {
+  margin-left: 15px;
+}
+
+.music-set,
+.music-delete {
+  flex: 0 0 110px;
+}
+
+.music-wrap {
+  display: flex;
+  width: 100%;
+}
+
+.api-config {
+  margin-left: 0.3rem;
+}
+
+::-webkit-file-upload-button {
+  cursor: pointer;
+}
