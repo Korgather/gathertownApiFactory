@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="kor">
     <head>
         <meta charset="UTF-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -56,22 +56,22 @@
                     <div class = "locate-wrap">
                     <div class = "group-x">
                         <label for="api" class="api-config">X 좌표</label>
-                        <input  type="text" class="input" id="export-space-value" placeholder="X 좌표"/>
+                        <input  type="number" class="input" id="export-space-value" placeholder="X 좌표" min="0"/>
                     </div>
                     <div class = "group-y">
                         <label for="api" class="api-config">Y 좌표</label>
-                        <input  type="text" class="input" id="export-space-value" placeholder="Y 좌표"/>
+                        <input  type="number" class="input" id="export-space-value" placeholder="Y 좌표" min="0"/>
                     </div>
                     </div>
 
                     <div class = "locate-wrap">
                     <div class = "group-x">
                         <label for="api" class="api-config">범위</label>
-                        <input  type="text" class="input" id="export-space-value" placeholder="0~100"/>
+                        <input  type="number" class="input" id="export-space-value" placeholder="0~1000" min="0" max="1000"/>
                     </div>
                     <div class = "group-y">
                         <label for="api" class="api-config">볼륨</label>
-                        <input  type="text" class="input" id="export-space-value" placeholder="0~1"/>
+                        <input  type="number" class="input" id="export-space-value" placeholder="0.05~1" min="0.05" max="1" step="0.01"/>
                     </div>
                     </div>
                     
@@ -80,8 +80,8 @@
 
                     <div class="music-wrap">
                     <form class = "download-btn-group" id="download-btn-group">
-                        <input type="submit" class="button music-set" value="배경음악 설정" id="download-map" />
-                        <input type="submit" class="button music-delete" value="배경음악 삭제" id="download-map" />
+                        <input type="button" class="button music-set" value="배경음악 설정" id="bgm-set" />
+                        <input type="button" class="button music-delete" value="배경음악 삭제" id="bgm-delete" />
                     </form>
                     </div>
                 
@@ -105,7 +105,7 @@
         
         <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
         <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-        <script type="module" src="./js/index.js"></script>
+        <script type="module" src="./js/music.js"></script>
         <script type="module" src="./js/util.js"></script>
 
         <body>

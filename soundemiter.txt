@@ -1,0 +1,25 @@
+{
+        "_name": "Sound Emitter (Bar/Restaurant) Ambience",
+        "templateId": "SoundEmitterBarAmbience - 3u3pREPN_1Ymg7Cx-jS5f",
+        "objectPlacerId": "mXaETfP5wkMKYWBNQzlKOKVI8KE2",
+        "height": 3,
+        "properties": {},
+        "offsetY": 16,
+        "offsetX": 16,
+        "width": 2,
+        "type": 0,
+        "y": 5,
+        "color": "#9badb7",
+        "_tags": ["sound", "sound/ambience"],
+        "id": "SoundEmitterBarAmbience - 3u3pREPN1Ymg7Cx-jS5f_71aded18-8e5e-41e6-b5ba-c7b00265533f",
+        "x": 11,
+        "sound": {
+          "maxDistance": 30,
+          "src": "https://cdn.gather.town/storage.googleapis.com/gather-town.appspot.com/internal-dashboard/sounds/jAlXIofmjkQFHBM_oYl-F",
+          "volume": 0.5,
+          "loop": true
+        },
+        "highlighted": "https://cdn.gather.town/storage.googleapis.com/gather-town.appspot.com/internal-dashboard/images/NPfLjUOZ89A2gGdTCHsL-",
+        "normal": "https://cdn.gather.town/storage.googleapis.com/gather-town.appspot.com/internal-dashboard/images/4uyTiJdT700i7__UEsgWL",
+        "orientation": 0
+      }

@@ -1,7 +1,5 @@
 const getUrl = "https://korgathershop.herokuapp.com/https://gather.town/api/getMap";
 const setUrl = "https://korgathershop.herokuapp.com/https://gather.town/api/setMap";
-const tabExport = document.getElementById("tab-export");
-const tabImport = document.getElementById("tab-import");
 
 const exportForm = document.getElementById("export-form");
 const importForm = document.getElementById("import-form");
@@ -22,8 +20,8 @@ const downloadLink = document.getElementById("download-link");
 const downloadBtnGroup = document.getElementById("download-btn-group");
 const uploadBtnGroup = document.getElementById("upload-btn-group");
 
-const tabWrap = document.getElementById("tab-wrap");
-const bizeFile = document.getElementById("bizFile");
+const musicSetBtn = document.getElementById("bgm-set");
+const musicDeleteBtn = document.getElementById("bgm-delete");
 
 //맵 데이터 얻어오기
 async function getMap($exportMapValue, $exportApiValue, $exportSpaceValue) {
@@ -36,17 +34,15 @@ async function getMap($exportMapValue, $exportApiValue, $exportSpaceValue) {
       },
     });
     swal({
-      title: "맵파일 가져오기 성공",
-      text: "다운로드를 클릭해주세요",
+      title: "배경음악오브젝트 등록 성공",
+      text: "배경음악을 확인해보세요.",
       icon: "success",
-    }).then(() => {
-      downloadLink.style.backgroundColor = "#06d6a0";
     });
     return res;
   } catch (err) {
     console.log(err);
     swal({
-      title: "맵파일 가져오기 실패",
+      title: "배경음악오브젝트 등록 실패 ",
       text: "값을 정확하게 입력해주세요.",
       icon: "warning",
     }).then((val) => {
@@ -158,9 +154,45 @@ function tabToggle() {
     uploadBtnGroup.style.display = "block";
   }
 }
-// axios.defaults.headers.common["Content-Type"] = "application/x-www-form-urlencoded";
-// axios.defaults.headers.common["Access-Control-Allow-Origin"] = "*";
-// axios.defaults.withCredentials = true;
-tabWrap.addEventListener("click", tabToggle);
-bizeFile.addEventListener("change", test);
-downloadMap.addEventListener("click", CreateDownloadLink);
+
+const dummy = ["test", "sjb1MTNoAURqFLnl", "to4YxBrqDSsT4QAJ\\test"];
+const testdata = {
+  _name: "Sound Emitter (Bar/Restaurant) Ambience",
+  templateId: "SoundEmitterBarAmbience - 3u3pREPN_1Ymg7Cx-jS5f",
+  objectPlacerId: "mXaETfP5wkMKYWBNQzlKOKVI8KE2",
+  height: 3,
+  properties: {},
+  offsetY: 16,
+  offsetX: 16,
+  width: 2,
+  type: 0,
+  y: 5,
+  color: "#9badb7",
+  _tags: ["sound", "sound/ambience"],
+  id: "SoundEmitterBarAmbience - 3u3pREPN1Ymg7Cx-jS5f_71aded18-8e5e-41e6-b5ba-c7b00265533f",
+  x: 6,
+  sound: {
+    maxDistance: 30,
+    src: "https://cdn.gather.town/storage.googleapis.com/gather-town.appspot.com/internal-dashboard/sounds/jAlXIofmjkQFHBM_oYl-F",
+    volume: 0.5,
+    loop: true,
+  },
+  highlighted:
+    "https://cdn.gather.town/storage.googleapis.com/gather-town.appspot.com/internal-dashboard/images/NPfLjUOZ89A2gGdTCHsL-",
+  normal:
+    "https://cdn.gather.town/storage.googleapis.com/gather-town.appspot.com/internal-dashboard/images/4uyTiJdT700i7__UEsgWL",
+  orientation: 0,
+};
+
+function handleMusicSet() {
+  getMap(dummy[0], dummy[1], dummy[2]).then((res) => {
+    res.data.objects.push(testdata);
+    console.log(res.data.objects);
+  });
+}
+
+musicSetBtn.addEventListener("click", handleMusicSet);
+
+musicDeleteBtn.addEventListener("click", () => {
+  console.log("delete");
+});

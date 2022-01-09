@@ -190,7 +190,7 @@
 }
 
 .button:not(:first-of-type) {
-  margin-left: 15px;
+  margin-left: 4px;
 }
 
 .music-set,
