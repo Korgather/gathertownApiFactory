@@ -23,3 +23,11 @@
         "normal": "https://cdn.gather.town/storage.googleapis.com/gather-town.appspot.com/internal-dashboard/images/4uyTiJdT700i7__UEsgWL",
         "orientation": 0
       }
+
+      res.data.objects
+
+      // const dummy = ["test", "sjb1MTNoAURqFLnl", "to4YxBrqDSsT4QAJ/test"];
+
+      https://korgathermusic.s3.ap-northeast-2.amazonaws.com/%EB%B0%A9%ED%83%84+%EB%AA%A8%EC%9D%8C.mp3
+
+      3,3 

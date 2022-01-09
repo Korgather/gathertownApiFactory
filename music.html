@@ -18,7 +18,6 @@
                 <ul>
                     <li><a href="/">🌏 맵파일 추출 / 적용</a></li>
                     <li><a href="/" >🎵 배경음악 넣기</a></li>
-                    <li><a href="https://cafe.naver.com/gathertown/4338" target="_blank">📗 사용법</a></li>
                     <li><a href="https://cafe.naver.com/ArticleList.nhn?search.clubid=30500916&search.menuid=62&search.boardtype=L" target="_blank">💡 맵파일 공유</a></li>
                 </ul>
             </nav>
@@ -31,6 +30,9 @@
                     <label for="tab-export" class="tab">  &nbsp배경음악 넣기
                         <div class = "border"></div>
                     </label>
+                    <div class= question-wrap>
+                        <a class="question" href="https://cafe.naver.com/gathertown/4338" target="_blank">❓ </a><div class= "explain">사용법 보러가기</div>
+                    </div>
                 </div>
                     <div class = "input-form-wrap">
                     <div class = "input-wrap">
@@ -50,28 +52,28 @@
                     <div class = "input-wrap">
                     <div class = "group">
                         <label for="api" class="api-config">음악Url</label>
-                        <input  type="text" class="input" id="export-api-value" placeholder="음악Url을 입력해주세요."/>
+                        <input  type="text" class="input" id="music-url" placeholder="음악Url을 입력해주세요."/>
                     </div>
         
                     <div class = "locate-wrap">
                     <div class = "group-x">
                         <label for="api" class="api-config">X 좌표</label>
-                        <input  type="number" class="input" id="export-space-value" placeholder="X 좌표" min="0"/>
+                        <input  type="number" class="input" id="pos-x" placeholder="X 좌표" min="0"/>
                     </div>
                     <div class = "group-y">
                         <label for="api" class="api-config">Y 좌표</label>
-                        <input  type="number" class="input" id="export-space-value" placeholder="Y 좌표" min="0"/>
+                        <input  type="number" class="input" id="pos-y" placeholder="Y 좌표" min="0"/>
                     </div>
                     </div>
 
                     <div class = "locate-wrap">
                     <div class = "group-x">
                         <label for="api" class="api-config">범위</label>
-                        <input  type="number" class="input" id="export-space-value" placeholder="0~1000" min="0" max="1000"/>
+                        <input  type="number" class="input" id="max-distance" placeholder="0~1000" min="0" max="1000"/>
                     </div>
                     <div class = "group-y">
                         <label for="api" class="api-config">볼륨</label>
-                        <input  type="number" class="input" id="export-space-value" placeholder="0.05~1" min="0.05" max="1" step="0.01"/>
+                        <input  type="number" class="input" id="volume" placeholder="0.05~1" min="0.05" max="1" step="0.01"/>
                     </div>
                     </div>
                     

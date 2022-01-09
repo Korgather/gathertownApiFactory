@@ -112,6 +112,23 @@
   color: #888;
 }
 
+.question-wrap{
+  display: flex;
+  margin: 0 15px 13px 0;
+}
+
+.question:hover + .explain{
+  display: block;
+}
+
+
+.explain{
+  font-size: 0.7rem;
+  color: rgba(255, 255, 255, 0.739);
+  margin-top: 1px;
+  display: none;
+}
+
 .export,
 .import {
   opacity: 0;

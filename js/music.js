@@ -23,8 +23,17 @@ const uploadBtnGroup = document.getElementById("upload-btn-group");
 const musicSetBtn = document.getElementById("bgm-set");
 const musicDeleteBtn = document.getElementById("bgm-delete");
 
+const musicUrl = document.getElementById("music-url");
+const posX = document.getElementById("pos-x");
+const posY = document.getElementById("pos-y");
+const maxDistance = document.getElementById("max-distance");
+const volume = document.getElementById("volume");
+
 //맵 데이터 얻어오기
-async function getMap($exportMapValue, $exportApiValue, $exportSpaceValue) {
+async function getMap() {
+  const $exportMapValue = exportMapValue.value;
+  const $exportApiValue = exportApiValue.value;
+  const $exportSpaceValue = exportSpaceValue.value.replace("/", "\\").replaceAll("%20", " ");
   try {
     const res = await axios.get(getUrl, {
       params: {
@@ -33,21 +42,16 @@ async function getMap($exportMapValue, $exportApiValue, $exportSpaceValue) {
         mapId: $exportMapValue,
       },
     });
-    swal({
-      title: "배경음악오브젝트 등록 성공",
-      text: "배경음악을 확인해보세요.",
-      icon: "success",
-    });
+    
     return res;
   } catch (err) {
-    console.log(err);
     swal({
-      title: "배경음악오브젝트 등록 실패 ",
+      title: "실패 ",
       text: "값을 정확하게 입력해주세요.",
       icon: "warning",
-    }).then((val) => {
-      location.href = "/";
-    });
+    })
+    console.log(err);
+    
   }
 }
 // 맵 업로드하기
@@ -71,92 +75,28 @@ async function setMap(setData) {
       },
     });
     swal({
-      title: "맵업로드 성공",
+      title: "성공",
       text: "success",
       icon: "success",
     });
   } catch (err) {
     swal({
-      title: "맵업로드 실패",
-      text: "fail",
+      title: "실패 ",
+      text: "값을 정확하게 입력해주세요.",
       icon: "warning",
-    });
+    })
     console.log(err);
   }
 }
 
-// 맵데이터 추출후, 다운로드링크 걸기
-function exportMapFile($exportMapValue, $exportApiValue, $exportSpaceValue) {
-  getMap($exportMapValue, $exportApiValue, $exportSpaceValue).then((res) => {
-    let file;
-    let data = res;
 
-    let sFileName = "file_test.json";
-    let properties = { type: "text/json" }; // Specify the file's mime-type.
-    try {
-      file = new File([JSON.stringify(res)], sFileName, properties);
-    } catch (e) {
-      file = new Blob(data, properties);
-    }
-    let url = URL.createObjectURL(file);
-    downloadLink.href = url;
-    downloadMap.addEventListener("click", CreateDownloadLink);
-  });
-}
 
-// 파일다운로드 링크생성
-function CreateDownloadLink(e) {
-  e.preventDefault();
-  const $exportMapValue = exportMapValue.value;
-  const $exportApiValue = exportApiValue.value;
-  const $exportSpaceValue = exportSpaceValue.value.replace("/", "\\").replaceAll("%20", " ");
 
-  exportMapFile($exportMapValue, $exportApiValue, $exportSpaceValue);
-}
 
-function test(event) {
-  event.preventDefault(); //submit 할때 새로고침 되는것을 방지
-  let fileObject = document.getElementById("bizFile");
-  let fileName = fileObject.files[0];
-  let spanFilename = document.getElementById("fileName");
-  spanFilename.innerText = fileName.name;
-  let fr = new FileReader();
-  fr.readAsText(fileName, "utf-8");
 
-  fr.onload = () => {
-    parseText(fr.result);
-  };
-  importMap.disabled = false;
-  importMap.style.backgroundColor = "#06d6a0";
-}
 
-function parseText(text) {
-  importMap.addEventListener("click", () => {
-    try {
-      setMap(JSON.parse(text).data);
-    } catch (err) {
-      swal({
-        title: "맵업로드 실패",
-        text: "형식이 올바르지 않습니다.",
-        icon: "warning",
-      });
-      console.log(err);
-    }
-  });
-}
 
-function tabToggle() {
-  if (tabExport.checked) {
-    downloadBtnGroup.style.display = "block";
-    uploadBtnGroup.style.display = "none";
-  } else {
-    downloadBtnGroup.style.display = "none";
-    uploadBtnGroup.style.display = "block";
-  }
-}
-
-const dummy = ["test", "sjb1MTNoAURqFLnl", "to4YxBrqDSsT4QAJ\\test"];
-const testdata = {
+const Sampledata = {
   _name: "Sound Emitter (Bar/Restaurant) Ambience",
   templateId: "SoundEmitterBarAmbience - 3u3pREPN_1Ymg7Cx-jS5f",
   objectPlacerId: "mXaETfP5wkMKYWBNQzlKOKVI8KE2",
@@ -170,10 +110,10 @@ const testdata = {
   color: "#9badb7",
   _tags: ["sound", "sound/ambience"],
   id: "SoundEmitterBarAmbience - 3u3pREPN1Ymg7Cx-jS5f_71aded18-8e5e-41e6-b5ba-c7b00265533f",
-  x: 6,
+  x: 3,
   sound: {
     maxDistance: 30,
-    src: "https://cdn.gather.town/storage.googleapis.com/gather-town.appspot.com/internal-dashboard/sounds/jAlXIofmjkQFHBM_oYl-F",
+    src: "https://korgathermusic.s3.ap-northeast-2.amazonaws.com/kartrider+(1).mp3",
     volume: 0.5,
     loop: true,
   },
@@ -185,14 +125,48 @@ const testdata = {
 };
 
 function handleMusicSet() {
-  getMap(dummy[0], dummy[1], dummy[2]).then((res) => {
-    res.data.objects.push(testdata);
-    console.log(res.data.objects);
+  const musicObject = {...Sampledata, 
+    x : Number(posX.value),
+    y : Number(posY.value),
+    sound : {
+      maxDistance : Number(maxDistance.value), 
+      src : musicUrl.value,
+      volume : Number(volume.value),
+      loop : true,
+    }}
+  getMap().then(async (res) => {
+    if(musicUrl.value.length <=0 || maxDistance.value<=0 || volume.value<=0 || posX.value<=0 || posY.value <=0 ){
+      return swal({
+        title: "실패 ",
+        text: "값을 정확하게 입력해주세요.",
+        icon: "warning",
+      })
+    }
+    res.data.objects.push(musicObject);
+    setMap(res.data)
   });
+}
+
+function handleMusicDelete() {
+  getMap().then((res) => {
+    const findObject = res.data.objects.find((el) => {
+      return el.x === Number(posX.value) && el.y === Number(posY.value) && el.sound.maxDistance === Number(maxDistance.value) && el.sound.src === musicUrl.value
+    })
+    const idx = res.data.objects.indexOf(findObject)
+    if(idx > -1) {
+      res.data.objects.splice(idx,1)
+      setMap(res.data)
+    }else{
+      swal({
+        title: "실패 ",
+        text: "값을 정확하게 입력해주세요.",
+        icon: "warning",
+      })
+    }
+    
+  })
 }
 
 musicSetBtn.addEventListener("click", handleMusicSet);
 
-musicDeleteBtn.addEventListener("click", () => {
-  console.log("delete");
-});
+musicDeleteBtn.addEventListener("click", () => handleMusicDelete());
