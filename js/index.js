@@ -29,10 +29,6 @@ const bizeFile = document.getElementById("bizFile");
 async function getMap($exportMapValue, $exportApiValue, $exportSpaceValue) {
   try {
     const res = await axios.get(getUrl, {
-      // withCredentials: true,
-      // headers: {
-      //     "Access-Control-Allow-Origin": "*",
-      // },
       params: {
         apiKey: $exportApiValue,
         spaceId: $exportSpaceValue,
@@ -45,16 +41,6 @@ async function getMap($exportMapValue, $exportApiValue, $exportSpaceValue) {
       icon: "success",
     }).then(() => {
       downloadLink.style.backgroundColor = "#06d6a0";
-
-      // hover 이벤트 추가
-      // $("#download-link").hover(
-      //     function () {
-      //         $(this).css("background-color", "#69ebc8");
-      //     },
-      //     function () {
-      //         $(this).css("background-color", "#06d6a0");
-      //     }
-      // );
     });
     return res;
   } catch (err) {
