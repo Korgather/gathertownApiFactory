@@ -1,5 +1,7 @@
-const getUrl = "https://korgathershop.herokuapp.com/https://gather.town/api/getMap";
-const setUrl = "https://korgathershop.herokuapp.com/https://gather.town/api/setMap";
+const getUrl =
+  "https://korgathershop.herokuapp.com/https://gather.town/api/getMap";
+const setUrl =
+  "https://korgathershop.herokuapp.com/https://gather.town/api/setMap";
 const tabExport = document.getElementById("tab-export");
 const tabImport = document.getElementById("tab-import");
 
@@ -58,7 +60,9 @@ async function getMap($exportMapValue, $exportApiValue, $exportSpaceValue) {
 async function setMap(setData) {
   const $exportMapValue = exportMapValue.value;
   const $exportApiValue = exportApiValue.value;
-  const $exportSpaceValue = exportSpaceValue.value.replace("/", "\\").replaceAll("%20", " ");
+  const $exportSpaceValue = exportSpaceValue.value
+    .replace("/", "\\")
+    .replaceAll("%20", " ");
 
   const data = {
     apiKey: $exportApiValue,
@@ -113,7 +117,9 @@ function CreateDownloadLink(e) {
   e.preventDefault();
   const $exportMapValue = exportMapValue.value;
   const $exportApiValue = exportApiValue.value;
-  const $exportSpaceValue = exportSpaceValue.value.replace("/", "\\").replaceAll("%20", " ");
+  const $exportSpaceValue = exportSpaceValue.value
+    .replace("/", "\\")
+    .replaceAll("%20", " ");
 
   exportMapFile($exportMapValue, $exportApiValue, $exportSpaceValue);
 }
