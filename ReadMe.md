@@ -1,8 +1,8 @@
-# gathertownApiFactory
+# Korgathershop - gathertownApiFactory
 
 ## 1. 프로젝트 소개
 
-- 기술 스택 : HTML, CSS, JAVASCRIPT
+- 기술 스택 : HTML, CSS, JAVASCRIPTCancel changes
 
 - 웹서비스에 대한 자세한 개요
 
