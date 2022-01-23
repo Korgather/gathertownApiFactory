@@ -60,7 +60,6 @@
 } */
 
 .download-link {
-  background-color: #06d6a0;
   display: inline-block;
   width: 8rem;
   height: 2rem;
@@ -70,6 +69,7 @@
   margin-left: 0.7rem;
   background-color: #b8c7c3;
   color: rgb(16, 17, 17);
+  position: relative;
 }
 
 .download-link p {
@@ -112,17 +112,16 @@
   color: #888;
 }
 
-.question-wrap{
+.question-wrap {
   display: flex;
   margin: 0 15px 13px 0;
 }
 
-.question:hover + .explain{
+.question:hover + .explain {
   display: block;
 }
 
-
-.explain{
+.explain {
   font-size: 0.7rem;
   color: rgba(255, 255, 255, 0.739);
   margin-top: 1px;

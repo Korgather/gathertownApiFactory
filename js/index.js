@@ -52,7 +52,8 @@ async function getMap($exportMapValue, $exportApiValue, $exportSpaceValue) {
       text: "값을 정확하게 입력해주세요.",
       icon: "warning",
     }).then((val) => {
-      location.href = "/";
+      downloadLink.removeAttribute("href");
+      downloadLink.style.backgroundColor = "#b8c7c3";
     });
   }
 }
