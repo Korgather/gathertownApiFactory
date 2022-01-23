@@ -124,8 +124,8 @@ function CreateDownloadLink(e) {
   exportMapFile($exportMapValue, $exportApiValue, $exportSpaceValue);
 }
 
-function test(event) {
-  event.preventDefault(); //submit 할때 새로고침 되는것을 방지
+function changeHandler(event) {
+  event.preventDefault();
   let fileObject = document.getElementById("bizFile");
   let fileName = fileObject.files[0];
   let spanFilename = document.getElementById("fileName");
@@ -168,5 +168,5 @@ function tabToggle() {
 // axios.defaults.headers.common["Access-Control-Allow-Origin"] = "*";
 // axios.defaults.withCredentials = true;
 tabWrap.addEventListener("click", tabToggle);
-bizeFile.addEventListener("change", test);
+bizeFile.addEventListener("change", changeHandler);
 downloadMap.addEventListener("click", CreateDownloadLink);
