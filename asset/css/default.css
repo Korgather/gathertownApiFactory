@@ -144,3 +144,30 @@ ol {
 .coupang {
   margin-top: 30px;
 }
+
+.mobile-info {
+  color: white;
+  line-height: 2;
+  font-size: 25px;
+  text-align: center;
+}
+
+.mobile-wrapper {
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  display: none;
+}
+
+@media screen and (max-width: 768px) {
+  .section-config {
+    display: none !important;
+  }
+  .mobile-wrapper {
+    display: flex;
+  }
+  #header {
+    display: none !important;
+  }
+}
