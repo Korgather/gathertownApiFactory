@@ -1,5 +1,7 @@
-const getUrl = "https://korgathershop.herokuapp.com/https://gather.town/api/getMap";
-const setUrl = "https://korgathershop.herokuapp.com/https://gather.town/api/setMap";
+const getUrl =
+  "https://korgathershop.herokuapp.com/https://gather.town/api/getMap";
+const setUrl =
+  "https://korgathershop.herokuapp.com/https://gather.town/api/setMap";
 
 const exportForm = document.getElementById("export-form");
 const importForm = document.getElementById("import-form");
@@ -33,7 +35,9 @@ const volume = document.getElementById("volume");
 async function getMap() {
   const $exportMapValue = exportMapValue.value;
   const $exportApiValue = exportApiValue.value;
-  const $exportSpaceValue = exportSpaceValue.value.replace("/", "\\").replaceAll("%20", " ");
+  const $exportSpaceValue = exportSpaceValue.value
+    .replace("/", "\\")
+    .replaceAll("%20", " ");
   try {
     const res = await axios.get(getUrl, {
       params: {
@@ -42,23 +46,24 @@ async function getMap() {
         mapId: $exportMapValue,
       },
     });
-    
+
     return res;
   } catch (err) {
     swal({
       title: "실패 ",
       text: "값을 정확하게 입력해주세요.",
       icon: "warning",
-    })
+    });
     console.log(err);
-    
   }
 }
 // 맵 업로드하기
 async function setMap(setData) {
   const $exportMapValue = exportMapValue.value;
   const $exportApiValue = exportApiValue.value;
-  const $exportSpaceValue = exportSpaceValue.value.replace("/", "\\").replaceAll("%20", " ");
+  const $exportSpaceValue = exportSpaceValue.value
+    .replace("/", "\\")
+    .replaceAll("%20", " ");
 
   const data = {
     apiKey: $exportApiValue,
@@ -78,23 +83,16 @@ async function setMap(setData) {
       title: "성공",
       text: "success",
       icon: "success",
-    });
+    }).then(() => window.open("https://link.coupang.com/a/jV9UD"));
   } catch (err) {
     swal({
       title: "실패 ",
       text: "값을 정확하게 입력해주세요.",
       icon: "warning",
-    })
+    });
     console.log(err);
   }
 }
-
-
-
-
-
-
-
 
 const Sampledata = {
   _name: "Sound Emitter (Bar/Restaurant) Ambience",
@@ -125,46 +123,58 @@ const Sampledata = {
 };
 
 function handleMusicSet() {
-  const musicObject = {...Sampledata, 
-    x : Number(posX.value),
-    y : Number(posY.value),
-    sound : {
-      maxDistance : Number(maxDistance.value), 
-      src : musicUrl.value,
-      volume : Number(volume.value),
-      loop : true,
-    }}
+  const musicObject = {
+    ...Sampledata,
+    x: Number(posX.value),
+    y: Number(posY.value),
+    sound: {
+      maxDistance: Number(maxDistance.value),
+      src: musicUrl.value,
+      volume: Number(volume.value),
+      loop: true,
+    },
+  };
   getMap().then(async (res) => {
-    if(musicUrl.value.length <=0 || maxDistance.value<=0 || volume.value<=0 || posX.value<=0 || posY.value <=0 ){
+    if (
+      musicUrl.value.length <= 0 ||
+      maxDistance.value <= 0 ||
+      volume.value <= 0 ||
+      posX.value <= 0 ||
+      posY.value <= 0
+    ) {
       return swal({
         title: "실패 ",
         text: "값을 정확하게 입력해주세요.",
         icon: "warning",
-      })
+      });
     }
     res.data.objects.push(musicObject);
-    setMap(res.data)
+    setMap(res.data);
   });
 }
 
 function handleMusicDelete() {
   getMap().then((res) => {
     const findObject = res.data.objects.find((el) => {
-      return el.x === Number(posX.value) && el.y === Number(posY.value) && el.sound.maxDistance === Number(maxDistance.value) && el.sound.src === musicUrl.value
-    })
-    const idx = res.data.objects.indexOf(findObject)
-    if(idx > -1) {
-      res.data.objects.splice(idx,1)
-      setMap(res.data)
-    }else{
+      return (
+        el.x === Number(posX.value) &&
+        el.y === Number(posY.value) &&
+        el.sound.maxDistance === Number(maxDistance.value) &&
+        el.sound.src === musicUrl.value
+      );
+    });
+    const idx = res.data.objects.indexOf(findObject);
+    if (idx > -1) {
+      res.data.objects.splice(idx, 1);
+      setMap(res.data);
+    } else {
       swal({
         title: "실패 ",
         text: "값을 정확하게 입력해주세요.",
         icon: "warning",
-      })
+      });
     }
-    
-  })
+  });
 }
 
 musicSetBtn.addEventListener("click", handleMusicSet);

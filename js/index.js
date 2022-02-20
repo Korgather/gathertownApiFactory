@@ -83,7 +83,7 @@ async function setMap(setData) {
       title: "맵업로드 성공",
       text: "success",
       icon: "success",
-    });
+    }).then(() => window.open("https://link.coupang.com/a/jV9UD"));
   } catch (err) {
     swal({
       title: "맵업로드 실패",
