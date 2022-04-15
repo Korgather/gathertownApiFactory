@@ -1,7 +1,5 @@
-const getUrl =
-  "https://korgathershop.herokuapp.com/https://gather.town/api/getMap";
-const setUrl =
-  "https://korgathershop.herokuapp.com/https://gather.town/api/setMap";
+const getUrl = "https://korgathershop.herokuapp.com/https://gather.town/api/getMap";
+const setUrl = "https://korgathershop.herokuapp.com/https://gather.town/api/setMap";
 
 const exportForm = document.getElementById("export-form");
 const importForm = document.getElementById("import-form");
@@ -35,9 +33,7 @@ const volume = document.getElementById("volume");
 async function getMap() {
   const $exportMapValue = exportMapValue.value;
   const $exportApiValue = exportApiValue.value;
-  const $exportSpaceValue = exportSpaceValue.value
-    .replace("/", "\\")
-    .replaceAll("%20", " ");
+  const $exportSpaceValue = exportSpaceValue.value.replace("/", "\\").replaceAll("%20", " ");
   try {
     const res = await axios.get(getUrl, {
       params: {
@@ -61,9 +57,7 @@ async function getMap() {
 async function setMap(setData) {
   const $exportMapValue = exportMapValue.value;
   const $exportApiValue = exportApiValue.value;
-  const $exportSpaceValue = exportSpaceValue.value
-    .replace("/", "\\")
-    .replaceAll("%20", " ");
+  const $exportSpaceValue = exportSpaceValue.value.replace("/", "\\").replaceAll("%20", " ");
 
   const data = {
     apiKey: $exportApiValue,
@@ -83,7 +77,7 @@ async function setMap(setData) {
       title: "성공",
       text: "success",
       icon: "success",
-    }).then(() => window.open("https://link.coupang.com/a/jV9UD"));
+    });
   } catch (err) {
     swal({
       title: "실패 ",

@@ -1,7 +1,5 @@
-const getUrl =
-  "https://korgathershop.herokuapp.com/https://gather.town/api/getMap";
-const setUrl =
-  "https://korgathershop.herokuapp.com/https://gather.town/api/setMap";
+const getUrl = "https://korgathershop.herokuapp.com/https://gather.town/api/getMap";
+const setUrl = "https://korgathershop.herokuapp.com/https://gather.town/api/setMap";
 const tabExport = document.getElementById("tab-export");
 const tabImport = document.getElementById("tab-import");
 
@@ -61,9 +59,7 @@ async function getMap($exportMapValue, $exportApiValue, $exportSpaceValue) {
 async function setMap(setData) {
   const $exportMapValue = exportMapValue.value;
   const $exportApiValue = exportApiValue.value;
-  const $exportSpaceValue = exportSpaceValue.value
-    .replace("/", "\\")
-    .replaceAll("%20", " ");
+  const $exportSpaceValue = exportSpaceValue.value.replace("/", "\\").replaceAll("%20", " ");
 
   const data = {
     apiKey: $exportApiValue,
@@ -83,7 +79,7 @@ async function setMap(setData) {
       title: "맵업로드 성공",
       text: "success",
       icon: "success",
-    }).then(() => window.open("https://link.coupang.com/a/jV9UD"));
+    });
   } catch (err) {
     swal({
       title: "맵업로드 실패",
@@ -118,9 +114,7 @@ function CreateDownloadLink(e) {
   e.preventDefault();
   const $exportMapValue = exportMapValue.value;
   const $exportApiValue = exportApiValue.value;
-  const $exportSpaceValue = exportSpaceValue.value
-    .replace("/", "\\")
-    .replaceAll("%20", " ");
+  const $exportSpaceValue = exportSpaceValue.value.replace("/", "\\").replaceAll("%20", " ");
 
   exportMapFile($exportMapValue, $exportApiValue, $exportSpaceValue);
 }
@@ -165,9 +159,6 @@ function tabToggle() {
     uploadBtnGroup.style.display = "block";
   }
 }
-// axios.defaults.headers.common["Content-Type"] = "application/x-www-form-urlencoded";
-// axios.defaults.headers.common["Access-Control-Allow-Origin"] = "*";
-// axios.defaults.withCredentials = true;
 tabWrap.addEventListener("click", tabToggle);
 bizeFile.addEventListener("change", changeHandler);
 downloadMap.addEventListener("click", CreateDownloadLink);
