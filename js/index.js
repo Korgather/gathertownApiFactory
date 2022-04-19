@@ -1,5 +1,5 @@
-const getUrl = "https://korgathershop.herokuapp.com/https://gather.town/api/getMap";
-const setUrl = "https://korgathershop.herokuapp.com/https://gather.town/api/setMap";
+const getUrl = "https://korgathershop.herokuapp.com/https://api.gather.town/api/getMap";
+const setUrl = "https://korgathershop.herokuapp.com/https://api.gather.town/api/setMap";
 const tabExport = document.getElementById("tab-export");
 const tabImport = document.getElementById("tab-import");
 
@@ -139,6 +139,7 @@ function parseText(text) {
   importMap.addEventListener("click", () => {
     try {
       setMap(JSON.parse(text).data);
+      console.log(JSON.parse(text).data);
     } catch (err) {
       swal({
         title: "맵업로드 실패",

@@ -9,6 +9,14 @@
 .coupang {
   margin-top: 30px;
 }
+.go_modumeta {
+  color: skyblue;
+  transition: 0.2s color ease-in-out;
+}
+
+.go_modumeta:hover {
+  color: rgb(29, 187, 222);
+}
 
 .section-config .config-wrap {
   width: 100%;
